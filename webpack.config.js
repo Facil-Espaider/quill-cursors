@@ -1,8 +1,6 @@
 const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
-const environment = process.env.NODE_ENV || 'development';
-
 const moduleBundle = {
   entry: {
     'quill-cursors': './src/index.ts',
@@ -33,8 +31,8 @@ const moduleBundle = {
     library: 'QuillCursors',
     libraryExport: 'default',
     libraryTarget: 'umd',
+    clean: true,
   },
-  mode: environment,
   devtool: 'inline-source-map',
   devServer: {
     static: [
@@ -47,8 +45,10 @@ const moduleBundle = {
   ],
 };
 
-if (environment === 'production') {
-  delete moduleBundle.devtool;
-}
+module.exports = (argv) => {
+  if (argv.mode === 'production') {
+    delete moduleBundle.devtool;
+  }
 
-module.exports = [moduleBundle];
+  return moduleBundle;
+};

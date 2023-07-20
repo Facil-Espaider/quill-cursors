@@ -17,10 +17,11 @@
   "main": "dist/quill-cursors.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npm run lint && NODE_ENV=production ./node_modules/.bin/webpack",
-    "lint": "eslint '**/*'",
+    "build": "npm run lint && webpack --mode=production",
+    "build:develop": "npm run lint && webpack --mode=development",
+    "lint": "eslint .",
     "start": "webpack serve --open",
-    "test": "NODE_ENV=test jest --coverage"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
