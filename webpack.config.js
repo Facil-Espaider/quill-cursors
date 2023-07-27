@@ -45,7 +45,7 @@ const moduleBundle = {
   ],
 };
 
-module.exports = (argv) => {
+module.exports = (env, argv) => {
   if (argv.mode === 'production') {
     delete moduleBundle.devtool;
   }
